@@ -1,0 +1,77 @@
+:root {
+  --bg: #F6F7F9;
+  --ink: #0F1720;
+  --muted: #58646F;
+  --rule: #D5DAE1;
+  --accent: #0B4F6C;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 50rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Hero: the name is the one loud element on the page */
+.hero { padding: clamp(3rem, 10vw, 7rem) 0 clamp(2.5rem, 6vw, 4rem); }
+.hero h1 {
+  margin: 0 0 1.5rem;
+  font-weight: 400;
+  font-size: clamp(3.25rem, 13vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+.lead { margin: 0; max-width: 34rem; font-size: 1.3rem; color: var(--muted); }
+
+/* Sections: label on the left, content on the right */
+section {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1.5rem;
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--rule);
+}
+section h2 { margin: 0; font-size: 1rem; font-weight: 600; color: var(--muted); }
+section p { margin: 0 0 1rem; max-width: 36rem; }
+section p:last-child { margin-bottom: 0; }
+
+/* Ledger rows: year | description | link */
+.ledger { list-style: none; margin: 0; padding: 0; }
+.row {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.row:first-child { padding-top: 0; }
+.row:last-child { border-bottom: 0; padding-bottom: 0; }
+.row .year { color: var(--muted); font-variant-numeric: tabular-nums; }
+.row h3 { margin: 0; font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+.row p { margin: 0.25rem 0 0; font-size: 1rem; color: var(--muted); }
+
+a { color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+footer { padding: 2.5rem 0 3rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.95rem; }
+
+@media (max-width: 640px) {
+  section { grid-template-columns: 1fr; gap: 0.75rem; }
+  .row { grid-template-columns: 3rem 1fr; }
+  .row a { grid-column: 2; }
+}
+
+/* Bullet points inside a ledger row */
+.points { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 1rem; color: var(--muted); }
+.points li { margin-bottom: 0.3rem; }
+.row.noyear { grid-template-columns: 1fr auto; }
+@media (max-width: 640px) { .row.noyear { grid-template-columns: 1fr; } }
